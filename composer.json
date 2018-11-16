@@ -1,0 +1,16 @@
+{
+    "name": "adt/route-port",
+    "type": "library",
+    "license": ["BSD-3-Clause", "GPL-2.0", "GPL-3.0"],
+    "authors": [
+        {
+            "name": "Apps Dev Team s.r.o.",
+            "homepage": "https://appsdevteam.com",
+            "email": "hello@appsdevteam.com"
+        }
+    ],
+    "require": {
+        "nette/application": "^2.4",
+        "nette/http": "^2.4"
+    }
+}
