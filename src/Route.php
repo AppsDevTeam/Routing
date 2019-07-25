@@ -20,13 +20,9 @@ class Route extends \Nette\Application\Routers\Route
 		$url = parent::constructUrl($appRequest, $refUrl);
 
 		if ($url !== null && ! in_array($refUrl->getPort(), Url::$defaultPorts, true)) {
-			$url = preg_replace(
-				'/^('
-				. preg_quote($refUrl->getScheme(), '/') . '):\/\/'
-				. preg_quote($refUrl->getHost(), '/') . '\//',
-				'$1://' . $refUrl->getHost() . ':' . $refUrl->getPort() . '/',
-				$url
-			);
+			$nurl = new Url($url);
+			$nurl->setPort($refUrl->getPort());
+			$url = $nurl->getAbsoluteUrl();
 		}
 
 		return $url;
