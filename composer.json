@@ -10,8 +10,8 @@
         }
     ],
     "require": {
-        "nette/application": "^2.4 || ^3.0",
-        "nette/http": "^2.4 || ^3.0"
+        "nette/application": "^2.4 || ^3.0.6",
+        "nette/http": "^2.4 || ^3.0.6"
     },
     "autoload": {
         "psr-4": {
