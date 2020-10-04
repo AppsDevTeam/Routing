@@ -10,7 +10,7 @@
         }
     ],
     "require": {
-        "nette/application": "^2.4 || ^3.0.6",
+        "nette/application": "^2.4.16 || ^3.0.6",
         "nette/http": "^2.4 || ^3.0.6"
     },
     "autoload": {
