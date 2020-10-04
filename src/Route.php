@@ -15,7 +15,7 @@ class Route extends \Nette\Application\Routers\Route
 	 * Constructs absolute URL from Request object.
 	 * @return string|null
 	 */
-	public function constructUrl(AppRequest $appRequest, Url $refUrl)
+	public function constructUrl(AppRequest $appRequest, Url $refUrl): ?string
 	{
 		$url = parent::constructUrl($appRequest, $refUrl);
 
