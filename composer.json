@@ -1,5 +1,5 @@
 {
-    "name": "adt/route-port",
+    "name": "adt/routing",
     "type": "library",
     "license": ["BSD-3-Clause", "GPL-2.0", "GPL-3.0"],
     "authors": [
@@ -15,7 +15,7 @@
     },
     "autoload": {
         "psr-4": {
-            "ADT\\": "src/"
+            "ADT\\Routing\\": "src/"
         }
     }
 }
