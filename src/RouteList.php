@@ -6,6 +6,9 @@ namespace ADT\Routing;
 
 class RouteList extends \Nette\Application\Routers\RouteList
 {
+	/** @var string|null */
+	public $path;
+
 	final public function addRoute(string $mask, $metadata = [], int $flags = 0)
 	{
 		$this->add(static::createRoute($mask, $metadata, $flags), $flags);
@@ -18,7 +21,7 @@ class RouteList extends \Nette\Application\Routers\RouteList
 		return $this;
 	}
 
-	public static function createRoute(string $mask, $metadata = [], int $flags = 0)
+	public function createRoute(string $mask, $metadata = [], int $flags = 0)
 	{
 		return new Route($mask, $metadata, $flags);
 	}
