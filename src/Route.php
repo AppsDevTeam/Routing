@@ -19,7 +19,7 @@ class Route extends \Nette\Application\Routers\Route
 	{
 		$this->enableLocale = !$disableLocaleParameter && $translator && count($translator->getAvailableLocales()) > 1;
 
-		if (!$this->enableLocale) {
+		if ($this->enableLocale) {
 			$locale = '[<locale' . ($translator->getDefaultLocale() ? '=' . $translator->getDefaultLocale() : '') . ' ' . implode('|', $translator->getAvailableLocales()) . '>/]';
 			$hostUrl = (new Url($mask))->getHostUrl();
 			$mask = $hostUrl ?
