@@ -1,6 +1,6 @@
-# RoutePort
+# Routing
 
-Adds non-standard port support for routes with absolute path mask.
+Adds non-standard port support for routes with absolute path mask and better locale support.
 
 ## Installation
 
