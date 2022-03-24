@@ -22,9 +22,7 @@ class Route extends \Nette\Application\Routers\Route
 
 	public function __construct(string $mask, $metadata = [], int $flags = 0, ?Translator $translator = null)
 	{
-		$this->translator = $translator;
-
-		if ($this->enableLocale) {
+		if ($this->translator = $translator) {
 			$hostUrl = (new Url($mask))->getHostUrl();
 			$locale = '[<locale' . ($translator->getDefaultLocale() ? '=' . $translator->getDefaultLocale() : '') . ' ' . implode('|', $translator->getAvailableLocales()) . '>/]';
 
