@@ -18,11 +18,11 @@ use Nette\Utils\Strings;
  */
 class Route extends \Nette\Application\Routers\Route
 {
-	public bool $enableLocale;
+	public ?Translator $translator = null;
 
-	public function __construct(string $mask, $metadata = [], int $flags = 0, Translator $translator = null)
+	public function __construct(string $mask, $metadata = [], int $flags = 0, ?Translator $translator = null)
 	{
-		$this->enableLocale = (bool) $translator;
+		$this->translator = $translator;
 
 		if ($this->enableLocale) {
 			$hostUrl = (new Url($mask))->getHostUrl();
@@ -42,7 +42,7 @@ class Route extends \Nette\Application\Routers\Route
 	{
 		$url = parent::constructUrl($params, $refUrl);
 
-		if ($this->enableLocale && $url !== null) {
+		if ($this->translator && $url !== null) {
 			$url = new Url($url);
 			$url->setQueryParameter('originalLocale', null);
 			$url = (string)$url;
