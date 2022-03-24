@@ -7,7 +7,7 @@ use Contributte\Translation\Translator;
 
 class RouteList extends \Nette\Application\Routers\RouteList
 {
-	private Translator $translator;
+	private ?Translator $translator = null;
 
 	public function __construct(string $module = null, ?Translator $translator = null)
 	{
