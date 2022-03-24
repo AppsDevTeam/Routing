@@ -1,13 +1,20 @@
 <?php
 
-
 namespace ADT\Routing;
+
+use Contributte\Translation\Translator;
 
 
 class RouteList extends \Nette\Application\Routers\RouteList
 {
-	/** @var string|null */
-	public $path;
+	private Translator $translator;
+
+	public function __construct(string $module = null, ?Translator $translator = null)
+	{
+		parent::__construct($module);
+
+		$this->translator = $translator;
+	}
 
 	final public function addRoute(string $mask, $metadata = [], int $flags = 0)
 	{
@@ -23,6 +30,6 @@ class RouteList extends \Nette\Application\Routers\RouteList
 
 	public function createRoute(string $mask, $metadata = [], int $flags = 0)
 	{
-		return new Route($mask, $metadata, $flags);
+		return new Route($mask, $metadata, $flags, $this->translator);
 	}
 }
