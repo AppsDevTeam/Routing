@@ -9,6 +9,12 @@ class RouteList extends \Nette\Application\Routers\RouteList
 {
 	private ?Translator $translator = null;
 
+	/**
+	 * Kvůli laděnce
+	 * @var string|null
+	 */
+	public $path;
+
 	public function __construct(string $module = null, ?Translator $translator = null)
 	{
 		parent::__construct($module);
