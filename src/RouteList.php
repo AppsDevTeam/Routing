@@ -24,13 +24,13 @@ class RouteList extends \Nette\Application\Routers\RouteList
 
 	final public function addRoute(string $mask, $metadata = [], int $flags = 0)
 	{
-		$this->add(static::createRoute($mask, $metadata, $flags), $flags);
+		$this->add(static::createRoute($mask, $metadata), $flags);
 		return $this;
 	}
 
 	final public function prependRoute(string $mask, $metadata = [], int $flags = 0)
 	{
-		$this->prepend(static::createRoute($mask, $metadata, $flags), $flags);
+		$this->prepend(static::createRoute($mask, $metadata), $flags);
 		return $this;
 	}
 
