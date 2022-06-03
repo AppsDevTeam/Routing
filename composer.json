@@ -12,7 +12,6 @@
     "require": {
         "nette/application": "^3.0.6",
         "nette/http": "^3.0",
-        "contributte/translation": "^0.9",
         "nette/utils": "^3.0"
     },
     "autoload": {

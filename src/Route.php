@@ -2,7 +2,6 @@
 
 namespace ADT\Routing;
 
-use Contributte\Translation\Translator;
 use Nette\Http\Url;
 use Nette\Http\UrlScript;
 use Nette\Utils\Strings;
@@ -18,9 +17,9 @@ use Nette\Utils\Strings;
  */
 class Route extends \Nette\Application\Routers\Route
 {
-	public ?Translator $translator = null;
+	public ?TranslatorInterface $translator = null;
 
-	public function __construct(string $mask, $metadata = [], int $flags = 0, ?Translator $translator = null)
+	public function __construct(string $mask, $metadata = [], int $flags = 0, ?TranslatorInterface $translator = null)
 	{
 		if ($this->translator = $translator) {
 			$hostUrl = (new Url($mask))->getHostUrl();

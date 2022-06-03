@@ -2,12 +2,9 @@
 
 namespace ADT\Routing;
 
-use Contributte\Translation\Translator;
-
-
 class RouteList extends \Nette\Application\Routers\RouteList
 {
-	private ?Translator $translator = null;
+	private ?TranslatorInterface $translator;
 
 	/**
 	 * Kvůli laděnce
@@ -15,7 +12,7 @@ class RouteList extends \Nette\Application\Routers\RouteList
 	 */
 	public $path;
 
-	public function __construct(string $module = null, ?Translator $translator = null)
+	public function __construct(string $module = null, ?TranslatorInterface $translator = null)
 	{
 		parent::__construct($module);
 
