@@ -39,10 +39,10 @@ trait LocaleTrait
 			// pokud uzivatel dosel na stranky poprve, pokusime se zjistit jazyk prohlizece
 			// a podle nej vybrat nejvhodnejsi locale
 			else {
-				$lang = substr($presenter->getHttpRequest()->getHeader('Accept-Language'), 0, 2);
-
 				// jestlize je nastaven jazyk prohlizece
-				if ($lang) {
+				if ($_langHeader = $presenter->getHttpRequest()->getHeader('Accept-Language')) {
+					$lang = substr($_langHeader, 0, 2);
+					
 					// pokud jsou stranky lokalizovane do jazyka prohlizece,
 					// nastavime tuto lokalizaci
 					if (in_array($lang, $translator->getAvailableLocales())) {
