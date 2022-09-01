@@ -24,13 +24,13 @@ trait LocaleTrait
 
 				$locale = $presenter->getParameter('switchToLocale');
 
-				setcookie('locale', $locale, time() + (3600 * 24 * 14), '/');
+				$this->setLocaleCookie($locale, 3600 * 24 * 14);
 			}
 			// pokud ma uzivatel lokalizaci jiz ulozenou v cookie,
 			// nastavime mu tuto lokalizaci
 			elseif (isset($_COOKIE['locale'])) {
 				if (!in_array($_COOKIE['locale'], $translator->getAvailableLocales())) {
-					setcookie('locale', $locale, time() - 1, '/');
+					$this->setLocaleCookie($locale, -1);
 					$presenter->redirect('this');
 				}
 
@@ -70,7 +70,7 @@ trait LocaleTrait
 					$locale = $translator->getDefaultLocale();
 				}
 
-				setcookie('locale', $locale, time() + (3600 * 24 * 14), '/');
+				$this->setLocaleCookie($locale, 3600 * 24 * 14);
 			}
 
 			// pokud jsme urcili ze nejsme na nejvhodnejsi lokalizaci,
@@ -90,5 +90,13 @@ trait LocaleTrait
 		$presenter->onRender[] = function() use ($presenter) {
 			$presenter->template->locale = $this->locale;
 		};
+	}
+
+	private function setLocaleCookie(string $value, int $expires): void
+	{
+		// pouziva se i v ErrorPresenteru, kdy uz ale mohou byt odeslane hlavicky
+		if (!headers_sent()) {
+			setcookie('locale', $value, time() + $expires, '/');
+		}
 	}
 }
