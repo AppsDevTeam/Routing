@@ -11,6 +11,7 @@ class RouteList extends \Nette\Application\Routers\RouteList
 	 * @var string|null
 	 */
 	public $path;
+	public $domain;
 
 	public function __construct(string $module = null, ?TranslatorInterface $translator = null)
 	{
