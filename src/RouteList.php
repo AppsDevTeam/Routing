@@ -2,6 +2,8 @@
 
 namespace ADT\Routing;
 
+use Closure;
+
 class RouteList extends \Nette\Application\Routers\RouteList
 {
 	private ?TranslatorInterface $translator;
@@ -20,9 +22,9 @@ class RouteList extends \Nette\Application\Routers\RouteList
 		$this->translator = $translator;
 	}
 
-	final public function addRoute(string $mask, $metadata = [], int $flags = 0)
+	final public function addRoute(string $mask, Closure|array|string $metadata = [], int|bool $oneWay = 0): static
 	{
-		$this->add(static::createRoute($mask, $metadata), $flags);
+		$this->add(static::createRoute($mask, $metadata), $oneWay);
 		return $this;
 	}
 
