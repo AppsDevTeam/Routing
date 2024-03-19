@@ -5,14 +5,14 @@
     "authors": [
         {
             "name": "Apps Dev Team s.r.o.",
-            "homepage": "https://appsdevteam.com",
+            "homepage": "https://www.appsdevteam.com",
             "email": "hello@appsdevteam.com"
         }
     ],
     "require": {
-        "nette/application": "^3.0.6",
-        "nette/http": "^3.0",
-        "nette/utils": "^3.0 | ^4.0"
+        "nette/application": "^3.2",
+        "nette/http": "^3.3",
+        "nette/utils": "^4.0"
     },
     "autoload": {
         "psr-4": {
