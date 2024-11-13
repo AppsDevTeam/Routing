@@ -14,12 +14,14 @@ trait LocaleTrait
 		$presenter->onStartup[] = function() use ($presenter, $translator) {
 			$locale = $this->locale;
 
+			$parameters = $_GET;
+
 			// uzivatel se prepl na jinou lokalizaci pomoci odkazu na strance
 			// tuto lokalizaci mu nastavime do cookie, abychom ho odted vzdy presmerovali na tuto lokalizaci,
 			// pokud prijde na url, ze ktere neni jasna lokalizace
 			if ($presenter->getParameter('switchToLocale')) {
 				if (!in_array($presenter->getParameter('switchToLocale'), $translator->getAvailableLocales())) {
-					$presenter->redirect('this', ['switchToLocale' => null]);
+					$presenter->redirect('this', ['switchToLocale' => null] + $parameters);
 				}
 
 				$locale = $presenter->getParameter('switchToLocale');
@@ -31,7 +33,7 @@ trait LocaleTrait
 			elseif (isset($_COOKIE['locale'])) {
 				if (!in_array($_COOKIE['locale'], $translator->getAvailableLocales())) {
 					$this->setLocaleCookie($locale, -1);
-					$presenter->redirect('this');
+					$presenter->redirect('this', $parameters);
 				}
 
 				$locale = $_COOKIE['locale'];
@@ -42,7 +44,7 @@ trait LocaleTrait
 				// jestlize je nastaven jazyk prohlizece
 				if ($_langHeader = $presenter->getHttpRequest()->getHeader('Accept-Language')) {
 					$lang = substr($_langHeader, 0, 2);
-					
+
 					// pokud jsou stranky lokalizovane do jazyka prohlizece,
 					// nastavime tuto lokalizaci
 					if (in_array($lang, $translator->getAvailableLocales())) {
@@ -76,12 +78,12 @@ trait LocaleTrait
 			// pokud jsme urcili ze nejsme na nejvhodnejsi lokalizaci,
 			// presmerujeme
 			if ($locale !== $this->locale) {
-				$presenter->redirect('this', ['locale' => $locale, 'originalLocale' => $this->locale]);
+				$presenter->redirect('this', ['locale' => $locale, 'originalLocale' => $this->locale] + $parameters);
 			}
 
 			// pokud klikneme na lokalizaci, ktera je jiz aktualni
 			if ($presenter->getParameter('switchToLocale')) {
-				$presenter->redirect('this', ['switchToLocale' => null]);
+				$presenter->redirect('this', ['switchToLocale' => null] + $parameters);
 			}
 
 			$this->locale = $locale;
